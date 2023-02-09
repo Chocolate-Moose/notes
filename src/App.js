@@ -4,11 +4,11 @@ import CardViewer from './CardViewer';
 
 function App(props) {
   const [cards, setCards] = useState([
-    { front: 'front', back: 'back' },
-    { front: 'front1', back: 'back1' },
+    { front: 'door', back: 'something you walk through' },
+    { front: 'pape', back: 'dali cto' },
   ]);
 
-  const [editor, setEditor] = useState(true);
+  const [editor, setEditor] = useState(false);
 
   const addCard = (card) => {
     const newCards = cards.slice().concat(card);
@@ -27,7 +27,7 @@ function App(props) {
 
   return (
     <div>
-      {editor ? <CardEditor cards={cards} addCard={addCard} deleteCard={deleteCard} switchMode={switchMode} /> : <CardViewer switchMode={switchMode} />}
+      {editor ? <CardEditor cards={cards} addCard={addCard} deleteCard={deleteCard} switchMode={switchMode} /> : <CardViewer cards={cards} switchMode={switchMode} />}
     </div>
 
   );
