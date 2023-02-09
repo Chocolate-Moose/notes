@@ -6,6 +6,10 @@ function App(props) {
   const [cards, setCards] = useState([
     { front: 'door', back: 'something you walk through' },
     { front: 'pape', back: 'dali cto' },
+    { front: 'hamburger', back: 'a meat stack' },
+    { front: 'computer', back: 'a non-meat stack' },
+    { front: 'notion', back: 'the pinnacle of human achievement' },
+    { front: 'two-column layout', back: 'the bane of my existence' },
   ]);
 
   const [editor, setEditor] = useState(false);

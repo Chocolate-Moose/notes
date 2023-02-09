@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 function CardViewer(props) {
-  // eslint-disable-next-line no-unused-vars
   const [index, setIndex] = useState(0);
   const [displayFront, setDisplayFront] = useState(true);
 
@@ -19,7 +18,10 @@ function CardViewer(props) {
     <div>
       <h2>card viewer</h2>
       {displayCard()}
+      <button type="button" onClick={() => setIndex(index - 1)}>previous card</button>
       <button type="button" onClick={() => setDisplayFront(!displayFront)}>flip card</button>
+      <button type="button" onClick={() => setIndex(index + 1)}>next card</button>
+
       <hr />
       <button type="button" onClick={() => props.switchMode()}>switch to card editor</button>
     </div>
