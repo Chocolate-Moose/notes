@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function CardEditor(props) {
   const [front, setFront] = useState('');
@@ -19,6 +20,7 @@ function CardEditor(props) {
       <tr key={card.id}>
         <td>{card.front}</td>
         <td>{card.back}</td>
+        <td><button type="button" onClick={() => deleteCard(index)}>edit card</button></td>
         <td><button type="button" onClick={() => deleteCard(index)}>delete card</button></td>
       </tr>
     );
@@ -32,6 +34,7 @@ function CardEditor(props) {
           <tr>
             <th>Front</th>
             <th>Back</th>
+            <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -42,9 +45,9 @@ function CardEditor(props) {
       <br />
       <input placeholder="front of card" value={front} onChange={(e) => setFront(e.target.value)} />
       <input placeholder="back of card" value={back} onChange={(e) => setBack(e.target.value)} />
-      <button type="button" onClick={() => addCard({ front, back })}>add card</button>
+      <button type="button" disabled={front === '' || back === ''} onClick={() => addCard({ front, back })}>add card</button>
       <hr />
-      <button type="button" onClick={() => props.switchMode()}>switch to card viewer</button>
+      <Link to="/view">Go to card viewer</Link>
     </div>
 
   );

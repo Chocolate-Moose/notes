@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
 
@@ -12,8 +14,6 @@ function App(props) {
     { front: 'two-column layout', back: 'the bane of my existence' },
   ]);
 
-  const [editor, setEditor] = useState(false);
-
   const addCard = (card) => {
     const newCards = cards.slice().concat(card);
     setCards(newCards);
@@ -25,14 +25,18 @@ function App(props) {
     setCards(newCards);
   };
 
-  const switchMode = () => {
-    setEditor(!editor);
-  };
-
   return (
-    <div>
-      {editor ? <CardEditor cards={cards} addCard={addCard} deleteCard={deleteCard} switchMode={switchMode} /> : <CardViewer cards={cards} switchMode={switchMode} />}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/edit" element={<CardEditor cards={cards} addCard={addCard} deleteCard={deleteCard} />} />
+        <Route path="/view" element={<CardViewer cards={cards} />} />
+        <Route path="*" element={<div>path not found</div>} />
+      </Routes>
+    </Router>
+
+  // <div>
+  //   {editor ? <CardEditor cards={cards} addCard={addCard} deleteCard={deleteCard} switchMode={switchMode} /> : <CardViewer cards={cards} switchMode={switchMode} />}
+  // </div>
 
   );
 }
