@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Card from './Card';
 
 function CardEditor(props) {
   const [front, setFront] = useState('');
@@ -11,18 +12,14 @@ function CardEditor(props) {
     setBack('');
   };
 
+  // eslint-disable-next-line no-unused-vars
   const deleteCard = (index) => {
     props.deleteCard(index);
   };
 
   const cards = props.cards.map((card, index) => {
     return (
-      <tr key={card.id}>
-        <td>{card.front}</td>
-        <td>{card.back}</td>
-        <td><button type="button" onClick={() => deleteCard(index)}>edit card</button></td>
-        <td><button type="button" onClick={() => deleteCard(index)}>delete card</button></td>
-      </tr>
+      <Card card={card} deleteCard={deleteCard} saveCard={props.saveCard} index={index} />
     );
   });
 

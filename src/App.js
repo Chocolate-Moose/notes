@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Route, Routes, Navigate,
+} from 'react-router-dom';
 import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
 
@@ -25,12 +27,21 @@ function App(props) {
     setCards(newCards);
   };
 
+  const saveCard = (index, front, back) => {
+    const newCards = cards.slice();
+    newCards.splice(index, 1, { front, back });
+    setCards(newCards);
+  };
+
   return (
     <Router>
       <Routes>
-        <Route path="/edit" element={<CardEditor cards={cards} addCard={addCard} deleteCard={deleteCard} />} />
+        <Route path="/edit" element={<CardEditor cards={cards} addCard={addCard} deleteCard={deleteCard} saveCard={saveCard} />} />
         <Route path="/view" element={<CardViewer cards={cards} />} />
-        <Route path="*" element={<div>path not found</div>} />
+        <Route
+          path="*"
+          element={<Navigate to="/edit" />}
+        />
       </Routes>
     </Router>
 
